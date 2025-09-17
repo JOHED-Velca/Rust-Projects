@@ -1,0 +1,22 @@
+[package]
+name = "blinky"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+panic-halt = "0.2"
+
+#HAL for stm32L4 family; L476 is in the l4x6 subfamily
+stm32l4xx-hal = { version = "0.9", features = ["stm32l4x6", "rt"] }
+
+#Optional delay trait types
+embedded-hal = "1"
+
+[profile.release]
+#smaller, faster firmware
+codegen-units = 1
+debug = true
+ltp = true
+opt-level = "s"
